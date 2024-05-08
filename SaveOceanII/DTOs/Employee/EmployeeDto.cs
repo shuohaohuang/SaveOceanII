@@ -24,9 +24,21 @@ namespace SaveOceanII.DTOs.Employee
         /// modifica el valor Exp de la instancia, depenent del de Success, si es cert suma si no resta.
         /// </summary>
         /// <param name="success">si ha complert la missió</param>
-        public void GainExp(bool success)
+        public override string ToString()
         {
-            this.Exp += success ? 50 : -20;
+            string file = string.Format(
+                 "+-------------------------------------------------------------+\r\n"
+                   + "|                           Empleat                           |\r\n"
+                   + "+-------------------------------------------------------------+\r\n"
+                   + "|        Nom        |        Feina        |        Exp        |\r\n"
+                   + "+-------------------------------------------------------------+\r\n"
+                   + "|{0}|{1}|{2}|\r\n"
+                   + "+-------------------------------------------------------------+\r\n",
+               Txt.Format(this.Name, 19),
+               Txt.Format(this.Job, 21),
+               Txt.Format(this.Exp.ToString(), 19)
+           );
+            return file;
         }
     }
 }

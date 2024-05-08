@@ -12,6 +12,6 @@ namespace SaveOceanII.Persistence.DAO
         public IEnumerable<SeaTurtleDto> GetSeaTurtles();
         void AddSeaTurtle(SeaTurtleDto seaTurtle);
         void UpdateSeaTurtle(SeaTurtleDto seaTurtle);
-        void DeleteSeaTurtle(int id);
+        void DeleteSeaTurtle(string name);
     }
 }

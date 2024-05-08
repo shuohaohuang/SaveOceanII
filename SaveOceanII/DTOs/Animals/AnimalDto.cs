@@ -4,19 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SaveOceanII.DTOs.Animals
+namespace SaveTheOceanII.DTOs.Animals
 {
-    public class AAnimal
+    public class AnimalDto
     {
         public string Family { get; set; }
         public string Species { get; set; }
-
-        public AAnimal( string family, string species)
-        {
-
-            this.Family = family;
-            this.Species = species;
-
-        }
+        public int Id {  get; set; }
     }
 }

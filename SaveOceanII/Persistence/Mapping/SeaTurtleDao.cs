@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Npgsql;
 using SaveOceanII.DTOs.Animals;
 using SaveOceanII.Persistence.DAO;
@@ -23,27 +24,21 @@ namespace SaveOceanII.Persistence.Mapping
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
-                string query =
-                    "insert into SeaTurtle(name, family, specie, weight)"
-                    + "VALUES(@name,@family,@specie,@weight)";
+                string query = "insert into animal(family, name)" + "VALUES(@family,@name)";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                command.Parameters.AddWithValue("name", seaTurtle.Name);
-                command.Parameters.AddWithValue("family", seaTurtle.Family);
-                command.Parameters.AddWithValue("specie", seaTurtle.Species);
-                command.Parameters.AddWithValue("weight", seaTurtle.Weight);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                command.Parameters.AddWithValue("family", seaTurtle.Family);
+                command.Parameters.AddWithValue("name", seaTurtle.Species);
             }
         }
 
-        public void DeleteSeaTurtle(int id)
+        public void DeleteSeaTurtle(string name)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
-                string query = "delete from SeaTurtle where id=@id";
+                string query = "delete from animal where name=@name ";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                command.Parameters.AddWithValue("id", id);
+                command.Parameters.AddWithValue("name", name);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -58,10 +53,9 @@ namespace SaveOceanII.Persistence.Mapping
         public IEnumerable<SeaTurtleDto> GetSeaTurtles()
         {
             List<SeaTurtleDto> seaTurtles = new List<SeaTurtleDto>();
-
             using (NpgsqlConnection connection = new NpgsqlConnection(NpgsqlUtils.OpenConnection()))
             {
-                string query = "select id,name,specie,weight from SeaTurtle";
+                string query = "select name,family from animal where family = 'Tortuga marina'";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
                 connection.Open();
                 NpgsqlDataReader reader = command.ExecuteReader();
@@ -77,13 +71,10 @@ namespace SaveOceanII.Persistence.Mapping
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
-                string query =
-                    "update SeaTurtle set name=@name,specie=@specie,weight=@weight where id=@id";
+                string query = "update animal set name=@name, where name=@specie";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                command.Parameters.AddWithValue("id", seaTurtle.Id);
-                command.Parameters.AddWithValue("name", seaTurtle.Name);
+                command.Parameters.AddWithValue("name", seaTurtle.Species);
                 command.Parameters.AddWithValue("specie", seaTurtle.Species);
-                command.Parameters.AddWithValue("weight", seaTurtle.Weight);
 
                 connection.Open();
                 command.ExecuteNonQuery();

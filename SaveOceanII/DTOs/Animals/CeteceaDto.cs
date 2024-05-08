@@ -11,22 +11,21 @@ namespace SaveOceanII.DTOs.Animals
 {
     public class CetaceaDto : AAnimal, IHealAble
     {
-        private const string NameC = "Espiraculo";
+
         private const string FamilyC = "Cetaci";
         private const string SpeciesC = "delfí";
-        private const float WeightC = 302f;
-        public new string  Family { get; private set; } = "Cetaci";
+        public new string  Family { get; private set; } = FamilyC;
 
-        public CetaceaDto(string names, string family, string species, float weight) : base(names, family, species, weight)
+        public CetaceaDto( string family, string species) : base(family, species)
         {
         }
-        public CetaceaDto() : this(NameC, FamilyC, SpeciesC, WeightC)
+        public CetaceaDto() : this( FamilyC, SpeciesC)
         {
         }
         public int Heal(int actualState, bool transfer)
         {
-            int risc = transfer ? 25 : 0;
-            return (int)(actualState - Math.Log10(actualState) - risc);
+            int risc = transfer ? 0 : 50;
+            return (int)(actualState - actualState/5 - risc);
         }
     }
 }

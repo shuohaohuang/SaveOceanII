@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Npgsql;
 using SaveOceanII.DTOs.Animals;
 using SaveOceanII.Persistence.DAO;
@@ -24,26 +25,23 @@ namespace SaveOceanII.Persistence.Mapping
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
                 string query =
-                    "insert into seabird(name, family, specie, weight)"
-                    + "VALUES(@name,@family,@specie,@weight)";
+          "insert into animal(family, name)"
+          + "VALUES(@family,@name)";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                command.Parameters.AddWithValue("name", seaBird.Name);
-                command.Parameters.AddWithValue("family", seaBird.Family);
-                command.Parameters.AddWithValue("specie", seaBird.Species);
-                command.Parameters.AddWithValue("weight", seaBird.Weight);
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                command.Parameters.AddWithValue("family", seaBird.Family);
+                command.Parameters.AddWithValue("name", seaBird.Species);
             }
         }
 
-        public void DeleteSeaBird(int id)
+        public void DeleteSeaBird(string name)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
-                string query = "delete from seabird where id=@id";
+                string query =
+                    "delete from animal where name=@name ";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                command.Parameters.AddWithValue("id", id);
+                command.Parameters.AddWithValue("name", name);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -56,7 +54,7 @@ namespace SaveOceanII.Persistence.Mapping
 
             using (NpgsqlConnection connection = new NpgsqlConnection(NpgsqlUtils.OpenConnection()))
             {
-                string query = "select id,name,specie,weight from seabird";
+                string query = "select name,family from animal where family = 'Au marina'";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
                 connection.Open();
                 NpgsqlDataReader reader = command.ExecuteReader();
@@ -73,12 +71,10 @@ namespace SaveOceanII.Persistence.Mapping
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
                 string query =
-                    "update seabird set name=@name,specie=@specie,weight=@weight where id=@id";
+                    "update animal set name=@name, where name=@specie";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                command.Parameters.AddWithValue("id", seaBird.Id);
-                command.Parameters.AddWithValue("name", seaBird.Name);
+                command.Parameters.AddWithValue("name", seaBird.Species);
                 command.Parameters.AddWithValue("specie", seaBird.Species);
-                command.Parameters.AddWithValue("weight", seaBird.Weight);
 
                 connection.Open();
                 command.ExecuteNonQuery();

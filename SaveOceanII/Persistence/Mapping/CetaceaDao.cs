@@ -25,27 +25,26 @@ namespace SaveOceanII.Persistence.Mapping
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
                 string query =
-                    "insert into catacea(name, family, specie, weight)"
-                    + "VALUES(@name,@family,@specie,@weight)";
+                    "insert into animal(family, name)"
+                    + "VALUES(@family,@name)";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                command.Parameters.AddWithValue("name", cetacea.Name);
+
                 command.Parameters.AddWithValue("family", cetacea.Family);
-                command.Parameters.AddWithValue("specie", cetacea.Species);
-                command.Parameters.AddWithValue("weight", cetacea.Weight);
+                command.Parameters.AddWithValue("name", cetacea.Species);
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
 
-        public void DeleteCetacea(int id)
+        public void DeleteCetacea(string name)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
                 string query =
-                    "delete from catacea where id=@id";
+                    "delete from animal where name=@name ";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                command.Parameters.AddWithValue("id", id);
+                command.Parameters.AddWithValue("name", name);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -58,7 +57,7 @@ namespace SaveOceanII.Persistence.Mapping
 
             using (NpgsqlConnection connection = new NpgsqlConnection(NpgsqlUtils.OpenConnection()))
             {
-                string query = "select id,name,specie,weight from Catacea";
+                string query = "select name,family from animal where family = 'Cetaci'";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
                 connection.Open();
                 NpgsqlDataReader reader = command.ExecuteReader();
@@ -75,12 +74,10 @@ namespace SaveOceanII.Persistence.Mapping
             using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
                 string query =
-                    "update catacea set name=@name,specie=@specie,weight=@weight where id=@id";
+                    "update animal set name=@name, where name=@specie";
                 NpgsqlCommand command = new NpgsqlCommand(query, connection);
-                command.Parameters.AddWithValue("id", cetacea.Id);
-                command.Parameters.AddWithValue("name", cetacea.Name);
+                command.Parameters.AddWithValue("name", cetacea.Species);
                 command.Parameters.AddWithValue("specie", cetacea.Species);
-                command.Parameters.AddWithValue("weight", cetacea.Weight);
 
                 connection.Open();
                 command.ExecuteNonQuery();

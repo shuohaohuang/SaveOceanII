@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Npgsql;
 using SaveOceanII.DTOs.Animals;
 using SaveOceanII.DTOs.Employee;
+using SaveTheOceanII.DTOs.Animals;
+using SaveTheOceanII.DTOs.AnimalsFiles;
 
 namespace SaveOceanII.Persistence.Utils
 {
@@ -30,30 +32,12 @@ namespace SaveOceanII.Persistence.Utils
             };
            return e;
        }
-        public static JobDto GetJob(NpgsqlDataReader reader)
-        {
-            JobDto j = new JobDto
-            {
-                Name = reader.GetString(0)
-            };
-            return j;
-        }
-        public static FamilyDto GetFamily(NpgsqlDataReader reader)
-        {
-            FamilyDto f = new FamilyDto
-            {
-                Name = reader.GetString(0)
-            };
-            return f;
-        }
         public static CetaceaDto GetCetacea(NpgsqlDataReader reader)
         {
             CetaceaDto c = new CetaceaDto
             {
-                Id=reader.GetInt32(0),
-                Name = reader.GetString(1),
-                Species=reader.GetString(2),
-                Weight= reader.GetFloat(3)
+                Species = reader.GetString(0)
+
             };
             return c;
         }
@@ -61,10 +45,7 @@ namespace SaveOceanII.Persistence.Utils
         {
             SeaBirdDto s = new SeaBirdDto
             {
-                Id = reader.GetInt32(0),
-                Name = reader.GetString(1),
-                Species = reader.GetString(2),
-                Weight = reader.GetFloat(3)
+                Species = reader.GetString(0)
             };
             return s;
         }
@@ -72,12 +53,32 @@ namespace SaveOceanII.Persistence.Utils
         {
             SeaTurtleDto s = new SeaTurtleDto
             {
-                Id = reader.GetInt32(0),
-                Name = reader.GetString(1),
-                Species = reader.GetString(2),
-                Weight = reader.GetFloat(3)
+                Species = reader.GetString(0)
+
             };
             return s;
+        }
+        public static AnimalDto GetAniml(NpgsqlDataReader reader)
+        {
+            AnimalDto a = new AnimalDto
+            {
+                Species = reader.GetString(0),
+                Family = reader.GetString(1)
+            };
+            return a;
+        }
+        public static RescueFileDto GetRescueFile(NpgsqlDataReader reader)
+        {
+            RescueFileDto f = new RescueFileDto
+            {
+                Id = reader.GetInt32(0),
+                RescueId = reader.GetString(1),
+                RescueDate = reader.GetDateTime(2),
+                GA = (int)reader.GetFloat(3) ,
+                Family = reader.GetString(4),
+                Location = reader.GetString(5),
+            };
+            return f;
         }
     }
 }

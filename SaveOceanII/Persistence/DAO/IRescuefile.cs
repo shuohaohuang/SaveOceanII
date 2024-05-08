@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace SaveTheOceanII.Persistence.DAO
 {
-    internal interface IRescuefile
+    internal interface IRescueFile
     {
-        public IEnumerable<RescueFileDto> GetEmployees();
-        void AddEmployee(RescueFileDto rescueFile);
+        public IEnumerable<RescueFileDto> GetRescueFile();
+        void AddRescueFile(RescueFileDto rescueFile);
+        RescueFileDto GetRescueFileById(int id);
+
 
     }
 }

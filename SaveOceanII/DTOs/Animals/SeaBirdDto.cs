@@ -9,22 +9,21 @@ namespace SaveOceanII.DTOs.Animals
 {
     public class SeaBirdDto : AAnimal, IHealAble
     {
-        private const string NameC = "PicoLargo";
         private const string FamilyC = "Au marina";
         private const string SpeciesC = "Gavina";
-        private const float WeightC = 2.3f;
 
-        public SeaBirdDto(string names, string family, string species, float weight) : base(names, family, species, weight)
-        {
-        }
-        public SeaBirdDto() : this(NameC, FamilyC, SpeciesC, WeightC)
-        {
-        }
+        public new string Family { get; private set; } = FamilyC;
+
+        public SeaBirdDto(string family, string species)
+            : base(family, species) { }
+
+        public SeaBirdDto()
+            : this(FamilyC, SpeciesC) { }
 
         public int Heal(int actualState, bool transfer)
         {
-            int risc = transfer ? 5 : 0;
-            return (int)(actualState - Math.Pow(actualState, 2) + risc);
+            int risc = transfer ? 0 : 5;
+            return (int)(actualState - risc)/5;
         }
     }
 }

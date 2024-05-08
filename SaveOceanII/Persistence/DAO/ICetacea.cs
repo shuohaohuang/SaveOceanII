@@ -12,6 +12,6 @@ namespace SaveOceanII.Persistence.DAO
         public IEnumerable<CetaceaDto> GetCetaceas();
         void AddCetacea(CetaceaDto cetacea);
         void UpdateCetacea(CetaceaDto cetacea);
-        void DeleteCetacea(int id);
+        void DeleteCetacea(string name);
     }
 }

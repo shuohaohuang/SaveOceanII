@@ -9,22 +9,20 @@ namespace SaveOceanII.DTOs.Animals
 {
     public class SeaTurtleDto : AAnimal, IHealAble
     {
-        private const string NameC = "Aletas";
         private const string FamilyC = "Totuga marina";
         private const string SpeciesC = "Tortuga Careta";
-        private const float WeightC = 2.3f;
+        public new string Family { get; private set; } = FamilyC;
 
-        public SeaTurtleDto(string names, string family, string species, float weight)
-            : base(names, family, species, weight) { }
+        public SeaTurtleDto(string family, string species)
+            : base(family, species) { }
 
         public SeaTurtleDto()
-            : this(NameC, FamilyC, SpeciesC, WeightC) { }
+            : this(FamilyC, SpeciesC) { }
 
         public int Heal(int actualState, bool transfer)
         {
-            int risc = transfer ? 5 : 5;
-            return actualState - ((actualState - 2) * (2 * actualState + 3)) - risc;
+            int risc = transfer ? 15 : 15;
+            return (int)(2 * actualState + 3) - ((actualState - 20) * 2) - risc;
         }
-        
     }
 }

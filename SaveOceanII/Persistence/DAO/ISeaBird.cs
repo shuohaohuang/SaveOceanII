@@ -12,6 +12,6 @@ namespace SaveOceanII.Persistence.DAO
         public IEnumerable<SeaBirdDto> GetSeaBirds();
         void AddSeaBird(SeaBirdDto seaBird);
         void UpdateSeaBird(SeaBirdDto seaBird);
-        void DeleteSeaBird(int id);
+        void DeleteSeaBird(string name);
     }
 }
