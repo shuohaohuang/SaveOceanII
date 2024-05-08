@@ -49,14 +49,6 @@
             lblEmpJob = new Label();
             lblNowEmpName = new Label();
             lblEmpName = new Label();
-            pnlAnimlFiles = new Panel();
-            gbAfegir = new GroupBox();
-            bttAddanimal = new Button();
-            cbbFamily = new ComboBox();
-            txtSpecie = new TextBox();
-            lblFamily = new Label();
-            lblSpecie = new Label();
-            dgAnimals = new DataGridView();
             pnlRescueFiles = new Panel();
             bttSearchById = new Button();
             txtSearchById = new TextBox();
@@ -76,17 +68,25 @@
             lblLevel = new Label();
             lblEspeci = new Label();
             lblEspecieView = new Label();
+            pnlAnimlFiles = new Panel();
+            gbAfegir = new GroupBox();
+            bttAddanimal = new Button();
+            cbbFamily = new ComboBox();
+            txtSpecie = new TextBox();
+            lblFamily = new Label();
+            lblSpecie = new Label();
+            dgAnimals = new DataGridView();
             pnlLogin.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             panel1.SuspendLayout();
-            pnlAnimlFiles.SuspendLayout();
-            gbAfegir.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgAnimals).BeginInit();
             pnlRescueFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgFiles).BeginInit();
             pnlRescue.SuspendLayout();
             gbFile.SuspendLayout();
+            pnlAnimlFiles.SuspendLayout();
+            gbAfegir.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgAnimals).BeginInit();
             SuspendLayout();
             // 
             // bttPlay
@@ -181,6 +181,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(pnlRescue);
             panel1.Controls.Add(bttRescueFiles);
             panel1.Controls.Add(bttModifi);
             panel1.Controls.Add(bttRescue);
@@ -191,7 +192,6 @@
             panel1.Controls.Add(lblNowEmpName);
             panel1.Controls.Add(lblEmpName);
             panel1.Controls.Add(pnlRescueFiles);
-            panel1.Controls.Add(pnlRescue);
             panel1.Controls.Add(pnlAnimlFiles);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
@@ -281,83 +281,6 @@
             lblEmpName.Size = new Size(58, 15);
             lblEmpName.TabIndex = 0;
             lblEmpName.Text = "Empleat : ";
-            // 
-            // pnlAnimlFiles
-            // 
-            pnlAnimlFiles.Controls.Add(gbAfegir);
-            pnlAnimlFiles.Controls.Add(dgAnimals);
-            pnlAnimlFiles.Location = new Point(126, 17);
-            pnlAnimlFiles.Name = "pnlAnimlFiles";
-            pnlAnimlFiles.Size = new Size(611, 353);
-            pnlAnimlFiles.TabIndex = 10;
-            // 
-            // gbAfegir
-            // 
-            gbAfegir.Controls.Add(bttAddanimal);
-            gbAfegir.Controls.Add(cbbFamily);
-            gbAfegir.Controls.Add(txtSpecie);
-            gbAfegir.Controls.Add(lblFamily);
-            gbAfegir.Controls.Add(lblSpecie);
-            gbAfegir.Location = new Point(16, 242);
-            gbAfegir.Name = "gbAfegir";
-            gbAfegir.Size = new Size(578, 100);
-            gbAfegir.TabIndex = 1;
-            gbAfegir.TabStop = false;
-            gbAfegir.Text = "Afegir Animal";
-            // 
-            // bttAddanimal
-            // 
-            bttAddanimal.Location = new Point(183, 68);
-            bttAddanimal.Name = "bttAddanimal";
-            bttAddanimal.Size = new Size(75, 23);
-            bttAddanimal.TabIndex = 4;
-            bttAddanimal.Text = "Afegir";
-            bttAddanimal.UseVisualStyleBackColor = true;
-            bttAddanimal.Click += bttAddanimal_Click;
-            // 
-            // cbbFamily
-            // 
-            cbbFamily.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbbFamily.FormattingEnabled = true;
-            cbbFamily.Location = new Point(306, 28);
-            cbbFamily.Name = "cbbFamily";
-            cbbFamily.Size = new Size(121, 23);
-            cbbFamily.TabIndex = 3;
-            // 
-            // txtSpecie
-            // 
-            txtSpecie.Location = new Point(76, 27);
-            txtSpecie.Name = "txtSpecie";
-            txtSpecie.Size = new Size(100, 23);
-            txtSpecie.TabIndex = 2;
-            // 
-            // lblFamily
-            // 
-            lblFamily.AutoSize = true;
-            lblFamily.Location = new Point(237, 27);
-            lblFamily.Name = "lblFamily";
-            lblFamily.Size = new Size(49, 15);
-            lblFamily.TabIndex = 1;
-            lblFamily.Text = "Familia :";
-            // 
-            // lblSpecie
-            // 
-            lblSpecie.AutoSize = true;
-            lblSpecie.Location = new Point(15, 27);
-            lblSpecie.Name = "lblSpecie";
-            lblSpecie.Size = new Size(52, 15);
-            lblSpecie.TabIndex = 0;
-            lblSpecie.Text = "Especie :";
-            // 
-            // dgAnimals
-            // 
-            dgAnimals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgAnimals.Location = new Point(15, 13);
-            dgAnimals.Name = "dgAnimals";
-            dgAnimals.Size = new Size(579, 222);
-            dgAnimals.TabIndex = 0;
-            dgAnimals.CellEndEdit += dgAnimals_CellEndEdit;
-            dgAnimals.SelectionChanged += dgAnimals_SelectionChanged;
             // 
             // pnlRescueFiles
             // 
@@ -544,6 +467,82 @@
             lblEspecieView.TabIndex = 5;
             lblEspecieView.Text = "label5";
             // 
+            // pnlAnimlFiles
+            // 
+            pnlAnimlFiles.Controls.Add(gbAfegir);
+            pnlAnimlFiles.Controls.Add(dgAnimals);
+            pnlAnimlFiles.Location = new Point(126, 17);
+            pnlAnimlFiles.Name = "pnlAnimlFiles";
+            pnlAnimlFiles.Size = new Size(611, 353);
+            pnlAnimlFiles.TabIndex = 10;
+            // 
+            // gbAfegir
+            // 
+            gbAfegir.Controls.Add(bttAddanimal);
+            gbAfegir.Controls.Add(cbbFamily);
+            gbAfegir.Controls.Add(txtSpecie);
+            gbAfegir.Controls.Add(lblFamily);
+            gbAfegir.Controls.Add(lblSpecie);
+            gbAfegir.Location = new Point(16, 242);
+            gbAfegir.Name = "gbAfegir";
+            gbAfegir.Size = new Size(578, 100);
+            gbAfegir.TabIndex = 1;
+            gbAfegir.TabStop = false;
+            gbAfegir.Text = "Afegir Animal";
+            // 
+            // bttAddanimal
+            // 
+            bttAddanimal.Location = new Point(183, 68);
+            bttAddanimal.Name = "bttAddanimal";
+            bttAddanimal.Size = new Size(75, 23);
+            bttAddanimal.TabIndex = 4;
+            bttAddanimal.Text = "Afegir";
+            bttAddanimal.UseVisualStyleBackColor = true;
+            bttAddanimal.Click += bttAddanimal_Click;
+            // 
+            // cbbFamily
+            // 
+            cbbFamily.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbbFamily.FormattingEnabled = true;
+            cbbFamily.Location = new Point(306, 28);
+            cbbFamily.Name = "cbbFamily";
+            cbbFamily.Size = new Size(121, 23);
+            cbbFamily.TabIndex = 3;
+            // 
+            // txtSpecie
+            // 
+            txtSpecie.Location = new Point(76, 27);
+            txtSpecie.Name = "txtSpecie";
+            txtSpecie.Size = new Size(100, 23);
+            txtSpecie.TabIndex = 2;
+            // 
+            // lblFamily
+            // 
+            lblFamily.AutoSize = true;
+            lblFamily.Location = new Point(237, 27);
+            lblFamily.Name = "lblFamily";
+            lblFamily.Size = new Size(49, 15);
+            lblFamily.TabIndex = 1;
+            lblFamily.Text = "Familia :";
+            // 
+            // lblSpecie
+            // 
+            lblSpecie.AutoSize = true;
+            lblSpecie.Location = new Point(15, 27);
+            lblSpecie.Name = "lblSpecie";
+            lblSpecie.Size = new Size(52, 15);
+            lblSpecie.TabIndex = 0;
+            lblSpecie.Text = "Especie :";
+            // 
+            // dgAnimals
+            // 
+            dgAnimals.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgAnimals.Location = new Point(15, 13);
+            dgAnimals.Name = "dgAnimals";
+            dgAnimals.Size = new Size(579, 222);
+            dgAnimals.TabIndex = 0;
+            dgAnimals.CellEndEdit += dgAnimals_CellEndEdit;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -561,16 +560,16 @@
             ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            pnlAnimlFiles.ResumeLayout(false);
-            gbAfegir.ResumeLayout(false);
-            gbAfegir.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgAnimals).EndInit();
             pnlRescueFiles.ResumeLayout(false);
             pnlRescueFiles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgFiles).EndInit();
             pnlRescue.ResumeLayout(false);
             gbFile.ResumeLayout(false);
             gbFile.PerformLayout();
+            pnlAnimlFiles.ResumeLayout(false);
+            gbAfegir.ResumeLayout(false);
+            gbAfegir.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgAnimals).EndInit();
             ResumeLayout(false);
         }
 

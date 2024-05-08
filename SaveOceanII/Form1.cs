@@ -17,6 +17,7 @@ namespace SaveOceanII
 {
     public partial class Form1 : Form
     {
+        #region
         const string LocBcn = "Barcelona",
             LocTrg = "Tarragona";
         const string FamCetacea = "Cetaci",
@@ -43,7 +44,7 @@ namespace SaveOceanII
 
         const int Zero = 0,
             One = 1;
-
+        #endregion
         private EmployeeDto nowUser;
         private RescueFileDto nowFile;
 
@@ -90,6 +91,9 @@ namespace SaveOceanII
             InsertDgRescues(fileDao.GetRescueFile().ToList());
         }
 
+        /// <summary>
+        /// Prepara el menu un cop logat 
+        /// </summary>
         private void AdminPanel()
         {
             panel1.Show();
@@ -99,18 +103,25 @@ namespace SaveOceanII
         }
 
         #region rescue
+        /// <summary>
+        /// Prepara el on es veu la fitxa de rescat i les accions 
+        /// </summary>
         private void RescuePanel()
         {
             pnlAnimlFiles.Hide();
             pnlRescue.Show();
             pnlRescueFiles.Hide();
         }
-
+        /// <summary>
+        /// Un botó que invoca a el panel de joc
+        /// </summary>
         private void BttRescue_Click(object sender, EventArgs e)
         {
             RescuePanel();
         }
-
+        /// <summary>
+        /// Mopstra les dades del rescat adequadament
+        /// </summary>
         private void LoadDataRescue()
         {
             lblResIdView.Text = nowFile.RescueId.ToString();
@@ -119,17 +130,25 @@ namespace SaveOceanII
             lblDateView.Text = nowFile.RescueDate.ToString();
             lblEspecieView.Text = nowFile.Family;
         }
-
+        /// <summary>
+        /// Botó que invoca una funció pasant com a valor bool false, no trallada
+        /// </summary>
         private void bttHeal_Click(object sender, EventArgs e)
         {
             Final(false);
         }
-
+        /// <summary>
+        /// Botó que invoca una funció pasant com a valor bool true, trallada
+        /// </summary>
         private void bttMove_Click(object sender, EventArgs e)
         {
             Final(true);
         }
 
+
+        /// <summary>
+        /// metode que executa el final del programa, calcul d'exp y persistencia de dades
+        /// </summary>
         private void Final(bool action)
         {
             string family = nowFile.Family;
@@ -172,6 +191,9 @@ namespace SaveOceanII
         }
         #endregion
         #region animals
+        /// <summary>
+        /// prepara el panel on es visualitza els animasl de la bbdd
+        /// </summary>
         private void AnimalPanel()
         {
             pnlAnimlFiles.Show();
@@ -179,12 +201,16 @@ namespace SaveOceanII
             pnlRescueFiles.Hide();
             InsertDgAnimals(animalDao.GetAnimals().ToList());
         }
-
+        /// <summary>
+        /// Mostra el panel on es visualitza els animal de la bbdd
+        /// </summary>
         private void BttModifi_Click(object sender, EventArgs e)
         {
             AnimalPanel();
         }
-
+        /// <summary>
+        /// Inserta dedes en el data grid animal
+        /// </summary>
         private void InsertDgAnimals(List<AnimalDto> list)
         {
             dgAnimals.Rows.Clear();
@@ -196,7 +222,9 @@ namespace SaveOceanII
                 dgAnimals.Rows[index].Cells[NameFamily].Value = X.Family;
             }
         }
-
+        /// <summary>
+        /// Permet al jugador cambiar la familia del animal quan hagi acabat d'editar una cella
+        /// </summary>
         private void dgAnimals_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             string specie = dgAnimals.Rows[e.RowIndex].Cells[Zero].Value.ToString();
@@ -217,7 +245,9 @@ namespace SaveOceanII
             if (family != dbAnimals.Where(x => x.Species == specie).FirstOrDefault().Family)
                 InsertDgAnimals(animalDao.GetAnimals().ToList());
         }
-
+        /// <summary>
+        /// Permet añadir un animal a la bbdd
+        /// </summary>
         private void bttAddanimal_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
@@ -245,18 +275,25 @@ namespace SaveOceanII
         #endregion animals
 
         #region rescueFiles
+        /// <summary>
+        /// Prepara el panel de les fitxes guardades
+        /// </summary>
         private void RescueFles()
         {
             pnlRescueFiles.Show();
             pnlRescue.Hide();
             pnlAnimlFiles.Hide();
         }
-
+        /// <summary>
+        /// Mostra el panel de les fitxes
+        /// </summary>
         private void Button1_Click(object sender, EventArgs e)
         {
             RescueFles();
         }
-
+        /// <summary>
+        /// Inserta les dades obtingudes per mostrarles en un data grid
+        /// </summary>
         private void InsertDgRescues(List<RescueFileDto> list)
         {
             dgFiles.Rows.Clear();
@@ -276,7 +313,9 @@ namespace SaveOceanII
                 }
             }
         }
-
+        /// <summary>
+        /// mostra les coincidencies amb el id en el data grid
+        /// </summary>
         private void bttSearchById_Click(object sender, EventArgs e)
         {
             errorProvider.Clear();
@@ -292,7 +331,9 @@ namespace SaveOceanII
                 errorProvider.SetError(txtSearchById, "Id no valida");
             }
         }
-
+        /// <summary>
+        /// Si el txt box es buit mostra de nou totes les dades disponibles
+        /// </summary>
         private void txtSearchById_TextChanged(object sender, EventArgs e)
         {
             if (txtSearchById.Text == string.Empty)
@@ -302,12 +343,18 @@ namespace SaveOceanII
         }
 
         #endregion rescueFiles
-
+        /// <summary>
+        /// mostra el menu per logarse
+        /// </summary>
         private void LogInMenu()
         {
             this.Size = new System.Drawing.Size(800, 495);
             pnlLogin.Show();
         }
+
+        /// <summary>
+        /// generador de rescats aleatoris
+        /// </summary>
 
         private void GenerateRescue()
         {
@@ -338,7 +385,9 @@ namespace SaveOceanII
                     break;
             }
         }
-
+        /// <summary>
+        ///  comproba les dades y crea el jugador
+        /// </summary>
         private void BttEnter_Click_1(object sender, EventArgs e)
         {
             errorProvider.Clear();
@@ -360,26 +409,23 @@ namespace SaveOceanII
                 LoadDataRescue();
             }
         }
-
+        /// <summary>
+        /// accedeix al menu per logarse
+        /// </summary>
         private void BttPlay_Click(object sender, EventArgs e)
         {
             bttExit.Hide();
             bttPlay.Hide();
             LogInMenu();
         }
-
+        /// <summary>
+        /// tanca elprograma
+        /// </summary>
         private void BttExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void dgAnimals_SelectionChanged(object sender, EventArgs e)
-        {
-            // Verificar si no hay celdas seleccionadas
-            if (dgAnimals.SelectedCells.Count == 0)
-            {
-                // Realizar acciones necesarias cuando se deselecciona una celda
-            }
-        }
+     
     }
 }
